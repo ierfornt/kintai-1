@@ -3,7 +3,6 @@
   <head>
     <title><%= full_title(yield(:title)) %> | </title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
       <%= render 'layouts/shim' %>
@@ -11,7 +10,13 @@
   <body>
       <%= render 'layouts/header' %>
     <div class="container">
+      
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      
     <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
     </div>
   </body>
 </html>
