@@ -1,0 +1,93 @@
+[1mdiff --git a/app/assets/javascripts/application.js b/app/assets/javascripts/application.js[m
+[1mindex 46b20359..ce0ca765 100644[m
+[1m--- a/app/assets/javascripts/application.js[m
+[1m+++ b/app/assets/javascripts/application.js[m
+[36m@@ -11,5 +11,7 @@[m
+ // about supported directives.[m
+ //[m
+ //= require rails-ujs[m
+[32m+[m[32m//= require jquery[m
+[32m+[m[32m//= require bootstrap[m
+ //= require turbolinks[m
+ //= require_tree .[m
+[1mdiff --git a/app/controllers/application_controller.rb b/app/controllers/application_controller.rb[m
+[1mindex 3a09061c..f413883d 100644[m
+[1m--- a/app/controllers/application_controller.rb[m
+[1m+++ b/app/controllers/application_controller.rb[m
+[36m@@ -1,7 +1,6 @@[m
+ class ApplicationController < ActionController::Base[m
+   protect_from_forgery with: :exception[m
+[31m-[m
+[31m- def hello[m
+[31m-   render html: "Hello,World"[m
+[31m- end[m
+[32m+[m[32m  include SessionsHelper[m[41m  [m
+[32m+[m[32m  # 全コントローラーの親クラスとなるApplicationコントローラーにこのモジュールを読み込む処理を記述することで、[m
+[32m+[m[32m  # どのコントローラーでもヘルパーモジュールのメソッドが使用できるようになる[m
+ end[m
+\ No newline at end of file[m
+[1mdiff --git a/app/views/layouts/_header.html.erb b/app/views/layouts/_header.html.erb[m
+[1mindex 0eda0c70..9d506fc1 100644[m
+[1m--- a/app/views/layouts/_header.html.erb[m
+[1m+++ b/app/views/layouts/_header.html.erb[m
+[36m@@ -1,10 +1,27 @@[m
+ <header class="navbar navbar-fixed-top navbar-inverse">[m
+       <div class="container">[m
+[31m-        <%= link_to "勤怠システム", root_path, id: "logo" %>[m
+[32m+[m[32m        <%= link_to "勤怠00システム", root_path, id: "logo" %>[m
+           <nav>[m
+             <ul class="nav navbar-nav navbar-right">[m
+               <li><%= link_to "トップへ", root_path %></li>[m
+[31m-              <li><%= link_to "ログイン", '#' %></li>[m
+[32m+[m[32m              <% if logged_in? %>[m
+[32m+[m[32m              <li><%= link_to "ログイン", login_path %></li>[m
+[32m+[m[32m              <li class="dropdown">[m
+[32m+[m[32m            <a href="#" class="dropdown-toggle" data-toggle="dropdown">[m
+[32m+[m[32m              アカウント <b class="caret"></b>[m
+[32m+[m[32m            </a>[m
+[32m+[m[32m            <ul class="dropdown-menu">[m
+[32m+[m[32m              <li><%= link_to "ユーザー勤怠情報表示", current_user %></li>[m
+[32m+[m[32m              <li><%= link_to "設定", '#' %></li>[m
+[32m+[m[32m              <li class="divider"></li>[m
+[32m+[m[32m              <li>[m
+[32m+[m[32m                <%= link_to "ログアウト", logout_path, method: :delete %>[m
+[32m+[m[32m              </li>[m
+[32m+[m[32m            </ul>[m
+[32m+[m[32m          </li>[m
+[32m+[m[32m        <% else %>[m
+[32m+[m[32m          <li><%= link_to "ログイン", login_path %></li>[m
+[32m+[m[32m        <% end %>[m
+             </ul>[m
+           </nav>[m
+       </div>[m
+[1mdiff --git a/app/views/static_pages/home.html.erb b/app/views/static_pages/home.html.erb[m
+[1mindex b8a58c1b..27b341ae 100644[m
+[1m--- a/app/views/static_pages/home.html.erb[m
+[1m+++ b/app/views/static_pages/home.html.erb[m
+[36m@@ -1,6 +1,7 @@[m
+ <% provide(:title, "ホーム") %>[m
+ <div class = "center jumbotron">[m
+    <h1>勤怠システム</h1>[m
+[31m-   <%= link_to "ログイン", '#', class: "btn btn-lg btn-primary" %>[m
+[32m+[m[32m   <%= link_to "ログイン", login_path, class: "btn btn-lg btn-primary" %>[m
+[32m+[m[32m   <p>アカウント作成は<%= link_to "こちら", signup_path %>から</p>[m
+ </div>[m
+   [m
+\ No newline at end of file[m
+[1mdiff --git a/config/routes.rb b/config/routes.rb[m
+[1mindex 9f8aadeb..c6ce1ad4 100644[m
+[1m--- a/config/routes.rb[m
+[1m+++ b/config/routes.rb[m
+[36m@@ -1,6 +1,9 @@[m
+ Rails.application.routes.draw do[m
+[31m-  [m
+[31m-  root 'static_pages#home'[m
+[31m-  get '/signup', to: 'users#new'[m
+[32m+[m
+[32m+[m[32m  root   'static_pages#home'[m
+[32m+[m[32m  get    '/signup', to: 'users#new'[m
+[32m+[m[32m  get    '/login',  to: 'sessions#new'[m
+[32m+[m[32m  post   '/login',  to: 'sessions#create'[m
+[32m+[m[32m  delete '/logout', to: 'sessions#destroy'[m
+   resources :users[m
+ end[m

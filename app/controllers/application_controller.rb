@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
- def hello
-   render html: "Hello,World"
- end
+  include SessionsHelper  
+  # 全コントローラーの親クラスとなるApplicationコントローラーにこのモジュールを読み込む処理を記述することで、
+  # どのコントローラーでもヘルパーモジュールのメソッドが使用できるようになる
 end
