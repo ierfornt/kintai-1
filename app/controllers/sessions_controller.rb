@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     # authenticateメソッドの引数として入力されたパスワードの値を指定
       log_in user        
       # log_in(user)と同じ内容となる
-      redirect_to user   
+      redirect_back_or user   
       # Railsで自動的にuser_url(user)に変換され実行される
     else
       flash.now[:danger] = 'メールアドレスとパスワードの情報が一致しませんでした。'
