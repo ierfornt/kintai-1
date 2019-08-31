@@ -1,4 +1,5 @@
 class AttendancesController < ApplicationController
+ before_action :admin_or_correct_user, only: [:update]
   
   def create
     @user = User.find(params[:user_id])
@@ -12,7 +13,7 @@ class AttendancesController < ApplicationController
     else
       flash[:danger] = 'トラブルがあり、登録出来ませんでした。'
     end
-    redirect_to @user
+      redirect_to @user
   end  
 
  def edit
@@ -38,7 +39,19 @@ class AttendancesController < ApplicationController
  end
  
 private
+
  def attendances_params
    params.permit(attendances: [:started_at, :finished_at, :note])[:attendances]
  end
+ 
+ # beforeフィルター
+
+    # 管理権限者、または現在ログインしているユーザーを許可します。
+    def admin_or_correct_user
+      if current_user?(@user) && current_user.admin? #||
+        flash[:success] = "1ヶ月分の勤怠情報を更新しました。"
+        redirect_to user_url(date: params[:date])
+     
+      end  
+    end
  end

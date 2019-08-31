@@ -150,3 +150,35 @@ input, textrea, select, uneditable-input {
     margin: auto;
     display: flex;
 }
+
+/* チェックボックス */
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
+input[type="submit"] {
+ background-color: #428bca;
+ color: white;
+ /* height: 30px; */
+ /* width: 50px;  */
+ 
+}
+ 
+input[type="text"] {
+ /* height: 30px; */   
+} 
+
+.form-inline p {
+  padding-right: 110px;
+  font-weight: bold;
+}

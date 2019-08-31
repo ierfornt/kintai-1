@@ -15,25 +15,38 @@
     </thead>
     <tbody>
       <% @dates.each do |day| %>
+       <% css_class = case%w{日 月 火 水 木 金 土}[day.worked_on.wday]
+         when '土'
+         'text-primary'
+         when '日'
+         'text-danger'
+         end %>
       <%= fields_for "attendances[]", day do |af| %>
       <tr>
         <td><%= day.worked_on.to_s(:date) %></td>
-        <td><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
-        <td><%= af.time_field :started_at,  class: "form-control" %></td>
+        <td class = "<%= css_class %>"><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
+        
+      <% if (Date.current < day.worked_on) %>
+        <td><%= af.time_field :started_at, readonly: true, class: "form-control" %></td>
+        <td><%= af.time_field :finished_at, readonly: true, class: "form-control" %></td>
+      <% else %>
+        <td><%= af.time_field :started_at, class: "form-control" %></td>
         <td><%= af.time_field :finished_at, class: "form-control" %></td>
+      <% end %>
+
         <td>
           <% if day.started_at.present? && day.finished_at.present? %>
             <%= working_times(day.started_at, day.finished_at) %>
           <% end %>
         </td>
-        <td><%= af.text_field :note, class: "form-contorl" %></td>
+        <td><%= af.text_field :note, class: "form-control" %></td>
       </tr>
       <% end %>
      <% end %>  
     </tbody>
   </table>
   <div class= "btn-attendances-update">
-    <%= link_to "キャンセル", user_path(@user, params:{first_day: @first_day}), class: "btn btn-default btn-block btn-primary" %>
+    <%= link_to "キャンセル", user_path(@user, params:{first_day: @first_day }), class: "btn btn-default btn-block btn-primary" %>
     <%= f.submit "編集を保存する", class: "btn btn-primary" %>
   </div>
   <% end %>

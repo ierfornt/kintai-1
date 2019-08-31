@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
     # userオブジェクトがtrueの場合は入力されたメールアドレスを持つユーザーが存在したことになり存在しなければfalseになる
     # authenticateメソッドの引数として入力されたパスワードの値を指定
       log_in user        
-      # log_in(user)と同じ内容となる
+      # セッションヘルパー log_in(user)と同じ内容となる
+      #params[:session][:remember_me] == '1' ? remember(user) : forget(user)　#チェック#ボックス処理
       redirect_back_or user   
       # Railsで自動的にuser_url(user)に変換され実行される
     else
