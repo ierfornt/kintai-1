@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   #ログインしていないユーザーが保護されたページにアクセスした場合、ログインページへ転送し、かつメッセージを添える。
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:destroy, :edit_basic_info, :update_basic_info]
-  
+  before_action :correct_referer
   
   def index
     @users = User.paginate(page: params[:page]).search(params[:search])
@@ -45,11 +45,11 @@ class UsersController < ApplicationController
   end
  
   def edit
-    #@user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
   
   def update
-    #@user = User.find(params[:id])
+    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       # 更新に成功した場合の処理
       flash[:success] = "ユーザー情報を更新しました。"
@@ -90,7 +90,7 @@ class UsersController < ApplicationController
   end
 end
 
-  def basic_info_params
+  def basic_info_params  
     params.require(:user).permit(:basic_time, :work_time)
   end
 
@@ -116,3 +116,9 @@ end
   def admin_user
     redirect_to(root_url) unless current_user.admin?
   end
+
+  def correct_referer  #一般ユーザーが他のユーザーのIDをURLに直接入力禁止　before_action定義
+  if request.referer.nil?
+    redirect_to root_url
+  end
+end

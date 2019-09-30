@@ -3,18 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [7.24.1](https://github.com/heroku/cli/compare/v7.24.0...v7.24.1) (2019-04-25)
+# [7.31.0](https://github.com/heroku/cli/compare/v7.30.1...v7.31.0) (2019-09-30)
 
 
 ### Bug Fixes
 
-* downgrade node to 11.14.0 ([0fe519d](https://github.com/heroku/cli/commit/0fe519d))
+* **pipelines-v5:** keep pipelines:setup v5 cmd ([#1340](https://github.com/heroku/cli/issues/1340)) ([9658f6a](https://github.com/heroku/cli/commit/9658f6a))
+
+
+### Features
+
+* **pipelines:** finishing converting pipelines plugin to oclif ([#1310](https://github.com/heroku/cli/issues/1310)) ([42adcbb](https://github.com/heroku/cli/commit/42adcbb))
 
 
 
 
 
-# [7.24.0](https://github.com/heroku/cli/compare/v7.23.0...v7.24.0) (2019-04-25)
+## [7.30.1](https://github.com/heroku/cli/compare/v7.30.0...v7.30.1) (2019-09-24)
 
 **Note:** Version bump only for package heroku
 
@@ -22,70 +27,78 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [7.22.9](https://github.com/heroku/cli/compare/v7.22.8...v7.22.9) (2019-04-04)
+# [7.30.0](https://github.com/heroku/cli/compare/v7.29.0...v7.30.0) (2019-09-16)
+
+
+### Features
+
+* **run:** convert run-v5 plugin to oclif ([#1289](https://github.com/heroku/cli/issues/1289)) ([8df77c0](https://github.com/heroku/cli/commit/8df77c0)), closes [#1302](https://github.com/heroku/cli/issues/1302)
+
+
+
+
+
+# [7.29.0](https://github.com/heroku/cli/compare/v7.28.0...v7.29.0) (2019-08-21)
+
+
+### Features
+
+* **webhooks:** add oclif version of webhooks plugin ([#1253](https://github.com/heroku/cli/issues/1253)) ([110c516](https://github.com/heroku/cli/commit/110c516))
+
+
+
+
+
+<a name="7.28.0"></a>
+# [7.28.0](https://github.com/heroku/cli/compare/v7.27.1...v7.28.0) (2019-08-19)
+
+
+
+
+**Note:** Version bump only for package heroku
+
+<a name="7.27.1"></a>
+## [7.27.1](https://github.com/heroku/cli/compare/v7.27.0...v7.27.1) (2019-07-30)
 
 
 ### Bug Fixes
 
-* **cli:** Do not display backboard errors ([27d0793](https://github.com/heroku/cli/commit/27d0793))
+* **cli:** upgrade v7 plugin-pipelines ([13ca934](https://github.com/heroku/cli/commit/13ca934))
 
 
 
 
-
-## [7.22.8](https://github.com/heroku/cli/compare/v7.22.7...v7.22.8) (2019-04-04)
-
-
-### Bug Fixes
-
-* **cli:** Add cli name to analytics properties ([#1201](https://github.com/heroku/cli/issues/1201)) ([03ab294](https://github.com/heroku/cli/commit/03ab294)), closes [#1202](https://github.com/heroku/cli/issues/1202)
-
-
-
-
-
-## [7.22.7](https://github.com/heroku/cli/compare/v7.22.6...v7.22.7) (2019-03-14)
-
-**Note:** Version bump only for package heroku
-
-
-
-
-
-## [7.22.6](https://github.com/heroku/cli/compare/v7.22.5...v7.22.6) (2019-03-14)
-
-**Note:** Version bump only for package heroku
-
-
-
-
-
-## [7.22.5](https://github.com/heroku/cli/compare/v7.22.4...v7.22.5) (2019-03-13)
-
-**Note:** Version bump only for package heroku
-
-
-
-
-
-## [7.22.4](https://github.com/heroku/cli/compare/v7.22.3...v7.22.4) (2019-03-06)
-
-**Note:** Version bump only for package heroku
-
-
-
-
-
-## [7.22.3](https://github.com/heroku/cli/compare/v7.22.2...v7.22.3) (2019-03-04)
+<a name="7.27.0"></a>
+# [7.27.0](https://github.com/heroku/cli/compare/v7.26.2...v7.27.0) (2019-07-30)
 
 
 ### Bug Fixes
 
-* upgrade node to 11.10.1 ([e02635c](https://github.com/heroku/cli/commit/e02635c))
+* pin qqjs ([c04fad3](https://github.com/heroku/cli/commit/c04fad3))
+
+
+### Features
+
+* **pipelines:** add reviewapps:enable command ([#1269](https://github.com/heroku/cli/issues/1269)) ([c9b7dbb](https://github.com/heroku/cli/commit/c9b7dbb))
 
 
 
 
+<a name="7.24.3"></a>
+## [7.24.3](https://github.com/heroku/cli/compare/v7.24.2...v7.24.3) (2019-05-07)
+
+
+
+
+**Note:** Version bump only for package heroku
+
+<a name="7.24.2"></a>
+## [7.24.2](https://github.com/heroku/cli/compare/v7.24.1...v7.24.2) (2019-05-07)
+
+
+
+
+**Note:** Version bump only for package heroku
 
 <a name="7.22.2"></a>
 ## [7.22.2](https://github.com/heroku/cli/compare/v7.22.1...v7.22.2) (2019-02-28)

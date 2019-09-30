@@ -1,5 +1,5 @@
 class AttendancesController < ApplicationController
- before_action :admin_or_correct_user, only: [:update]
+ before_action :admin_or_correct_user, only: [:edit, :update]
   
   def create
     @user = User.find(params[:user_id])
@@ -29,11 +29,11 @@ class AttendancesController < ApplicationController
    attendances_params.each do |id, item|
      attendance = Attendance.find(id)
      attendance.update_attributes(item)
- end
+   end
  flash[:success] = '勤怠情報を更新しました。'
  redirect_to user_url(@user, params:{first_day: params[:date]})
    else
- flash[:danger] = "不正な時間入力がありました、再入力してください。"
+ flash[:danger] = "不正な時間入力がありました、再入力し��ください。"
  redirect_to edit_attendances_path(@user, params[:date])
  end
  end
@@ -51,7 +51,6 @@ private
       if current_user?(@user) && current_user.admin? #||
         flash[:success] = "1ヶ月分の勤怠情報を更新しました。"
         redirect_to user_url(date: params[:date])
-     
       end  
     end
  end
